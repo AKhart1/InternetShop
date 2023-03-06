@@ -1,7 +1,13 @@
+using internetShop.Interfaces;
+using internetShop.Mocks;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IAllCars, MockCars>();
+builder.Services.AddTransient<ICarsCategory, MockCategory>();
+builder.Services.AddMvc();
 
 var app = builder.Build();
 
@@ -22,6 +28,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Cars}/{action=Index}/{id?}");
 
 app.Run();
