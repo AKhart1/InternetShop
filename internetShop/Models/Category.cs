@@ -1,6 +1,6 @@
 ﻿namespace internetShop.Models
 {
-    public class Categories
+    public class Category
     {
         public int id { get; set; }
         public string categoryName { get; set; }

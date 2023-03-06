@@ -4,6 +4,6 @@ namespace internetShop.Interfaces
 {
     public interface ICarsCategory
     {
-        IEnumerable<Categories> AllCategories { get; }
+        IEnumerable<Category> AllCategories { get; }
     }
 }
