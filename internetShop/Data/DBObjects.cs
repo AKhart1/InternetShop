@@ -1,18 +1,21 @@
-﻿using internetShop.Mocks;
-using internetShop.Interfaces;
-using internetShop.Models;
+﻿using internetShop.Models;
 
-namespace internetShop.Mocks
+namespace internetShop.Data
 {
-    public class MockCars : IAllCars
+    public class DBObjects
     {
-        private readonly ICarsCategory _categoryCars = new MockCategory();
-        public IEnumerable<Car> Cars
+        public static void Initial(AppDBContent content)
         {
-            get
+            //content == null
+            if (!content.Category.Any())
             {
-                return new List<Car>
-                {
+                content.Category.AddRange(Categories.Select(c => c.Value));
+            }
+
+            if (!content.Car.Any())
+            {
+                content.AddRange(
+
                     new Car
                     {
                         name = "Porsche 911",
@@ -23,7 +26,7 @@ namespace internetShop.Mocks
                         price = 6660,
                         isFavourite = false,
                         available = true,
-                        Category = _categoryCars.AllCategories.First()
+                        Category = Categories["Sports car"]
                     },
 
                     new Car
@@ -35,7 +38,7 @@ namespace internetShop.Mocks
                         price = 9990,
                         isFavourite = true,
                         available = true,
-                        Category = _categoryCars.AllCategories.Last()
+                        Category = Categories["Sedan"]
                     },
 
                     new Car
@@ -45,11 +48,11 @@ namespace internetShop.Mocks
                         longDesc = "Car 4 guys with big balls and pocket",
                         img = "/img/bmw-m4.jpg",
                         price = 1300,
-                        isFavourite = true,
-                        available = false,
-                        Category = _categoryCars.AllCategories.First()
+                        isFavourite = false,
+                        available = true,
+                        Category = Categories["Sedan"]
                     },
-
+                    
                     new Car
                     {
                         name = "Tesla Roadster",
@@ -60,18 +63,34 @@ namespace internetShop.Mocks
                         price = 35000,
                         isFavourite = true,
                         available = true,
-                        Category = _categoryCars.AllCategories.First()
+                        Category = category["Sports car"]
                     }
-                };
-
+                    );
             }
+            content.SaveChanges();
         }
 
-        public IEnumerable<Car>? getFavCars { get; set; }
-
-        public Car getObjectCar(int carId)
+        private static Dictionary<string, Category> category;
+        public static Dictionary<string, Category> Categories 
         {
-            throw new NotImplementedException();
+            get
+            {
+                if(category == null)
+                {
+                    var list = new Category[]
+                    {
+                        new Category{categoryName = "Sports car", desc = "Sports cars are two-seater.."},
+                        new Category{categoryName = "Sedan", desc = "Conventional example of a four-door passenger car"}
+                    };
+
+                    category = new Dictionary<string, Category>();
+                    foreach (Category element in list)
+                    {
+                        category.Add(element.categoryName, element);
+                    }
+                }
+                return category;
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace internetShop.Mocks
                         desc = "A sedan is a conventional example of a four-door passenger car"
                     }
                 };
-            }            
+            }
         }
     }
 }
