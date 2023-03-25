@@ -26,7 +26,7 @@ namespace internetShop.Data
                         price = 6660,
                         isFavourite = false,
                         available = true,
-                        Category = Categories["Sports car"]
+                        Category = Categories["Sports"]
                     },
 
                     new Car
@@ -59,11 +59,11 @@ namespace internetShop.Data
                         shortDesc = "The first supercar to set every performance record and still fit seating for four.",
                         longDesc = "The Roadster will be a new addition to the Tesla lineup when it eventually enters production," +
                         " resurrecting the nameplate worn by the company's first model back in 2008. ",
-                        img = "/img/tesla.webp",
+                        img = "/img/teslaRoadster.jpg",
                         price = 35000,
                         isFavourite = true,
                         available = true,
-                        Category = category["Sports car"]
+                        Category = Categories["Sports"]
                     }
                     );
             }
@@ -79,7 +79,7 @@ namespace internetShop.Data
                 {
                     var list = new Category[]
                     {
-                        new Category{categoryName = "Sports car", desc = "Sports cars are two-seater.."},
+                        new Category{categoryName = "Sports", desc = "Sports cars are two-seater.."},
                         new Category{categoryName = "Sedan", desc = "Conventional example of a four-door passenger car"}
                     };
 

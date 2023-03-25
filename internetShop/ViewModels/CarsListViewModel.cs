@@ -6,6 +6,6 @@ namespace internetShop.ViewModels
     {
         public IEnumerable<Car>? allCars { get; set; }
 
-        public string? currCategory { get; set; }
+        public string? carCategory { get; set; }
     }
 }

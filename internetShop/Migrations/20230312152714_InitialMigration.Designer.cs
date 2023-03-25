@@ -11,8 +11,8 @@ using internetShop.Data;
 namespace internetShop.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    [Migration("20230310194009_Initial")]
-    partial class Initial
+    [Migration("20230312152714_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,6 +82,31 @@ namespace internetShop.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("internetShop.Models.ShopCartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ShopCartId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("carid")
+                        .HasColumnType("int");
+
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("carid");
+
+                    b.ToTable("ShopCartItem");
+                });
+
             modelBuilder.Entity("internetShop.Models.Car", b =>
                 {
                     b.HasOne("internetShop.Models.Category", "Category")
@@ -91,6 +116,17 @@ namespace internetShop.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("internetShop.Models.ShopCartItem", b =>
+                {
+                    b.HasOne("internetShop.Models.Car", "car")
+                        .WithMany()
+                        .HasForeignKey("carid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("car");
                 });
 
             modelBuilder.Entity("internetShop.Models.Category", b =>

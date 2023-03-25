@@ -1,18 +1,27 @@
 using internetShop.Data;
-using internetShop.Mocks;
+using internetShop.Models;
 using internetShop.Interfaces;
 using internetShop.Repository;
 using Microsoft.EntityFrameworkCore;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddTransient<IAllCars, CarRepository>();
 builder.Services.AddTransient<ICarsCategory, CategoryRepository>();
-builder.Services.AddMvc();
+builder.Services.AddTransient<IAllOrders,OrdersRepository>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped(scp => ShopCart.GetCart(scp));
+
+
+builder.Services.AddMvc(options => options.EnableEndpointRouting =false);
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+
 
 builder.Services.AddDbContext<AppDBContent>(options => options.UseSqlServer
 (builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -27,7 +36,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-//TO-DO Connect DB to Backend!!
+
 using(var scope = app.Services.CreateScope())
 {
     AppDBContent content = scope.ServiceProvider.GetRequiredService<AppDBContent>();
@@ -36,13 +45,20 @@ using(var scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 
 app.UseAuthorization();
 
+
+app.MapControllerRoute(
+    name: "categoryFilter",
+    pattern: "{controller=Cars}/{action}/{category?}");    
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Cars}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+    
