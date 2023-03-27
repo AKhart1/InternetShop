@@ -64,6 +64,54 @@ namespace internetShop.Data
                         isFavourite = true,
                         available = true,
                         Category = Categories["Sports"]
+                    },
+
+                    new Car
+                    {
+                        name = "McLaren720",
+                        shortDesc = "Supercar",
+                        longDesc = "The 720S sits in McLaren's Super Series line-up alongside a convertible Spider version and the 765LT model",
+                        img = "/img/McLaren720S.jpg",
+                        price = 9800,
+                        isFavourite = true,
+                        available = true,
+                        Category = Categories["Sports"]
+                    },
+
+                    new Car
+                    {
+                        name = "ToyotaGR Supra",
+                        shortDesc = "Drift Supercar",
+                        longDesc = "The driving experience was clearly prioritised in the Supra’s development, and for sheer driving thrills it’s a winner.",
+                        img = "/img/ToyraGRSupra.jpg",
+                        price = 4500,
+                        isFavourite = true,
+                        available = true,
+                        Category = Categories["Sports"]
+                    },
+
+                    new Car
+                    {
+                        name = "Kia k5",
+                        shortDesc = "Comfortable car",
+                        longDesc = "180-hp, GT-specific 290hp",
+                        img = "/img/kiaK5.jpg",
+                        price = 2800,
+                        isFavourite = true,
+                        available = true,
+                        Category = Categories["Sedan"]
+                    },
+
+                    new Car
+                    {
+                        name = "Audi A7",
+                        shortDesc = "nice Sedan ",
+                        longDesc = "180hp",
+                        img = "/img/audiA7.jpg",
+                        price = 9300,
+                        isFavourite = true,
+                        available = true,
+                        Category = Categories["Sedan"]
                     }
                     );
             }

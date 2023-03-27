@@ -9,19 +9,17 @@ namespace internetShop.Models
         [BindNever] //hide from web
         public int id { get; set; }
 
-        [Display(Name = "Enter the Name")]
-        [Required(ErrorMessage = "Min length is 7 symbols")]
+        [Display(Name = "Enter the Name")]        
         public string name { get; set; }
 
 
         [Display(Name = "Enter the Surname")]
-        [Required(ErrorMessage = "Min length is 7 symbols")]
         public string surname { get; set; }
 
         [Display(Name = "Enter the Adress")]
         [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "min length is 15 symbols")]
-        public string adress { get; set; }
+        public string address { get; set; }
+
         public string email { get; set; }
 
         [DataType(DataType.PhoneNumber)]
