@@ -9,9 +9,10 @@
       <div class="modal-body py-0">
         @foreach(var elem in Model.shopCart.listShopItems)
     {
-        <div class="alert alert-info mt-3 mx-auto">
-            <b>Car:</b> @elem.car.name <br />
-            <b>Price</b> @elem.car.price.ToString("c") <br />
+        <div class="list-group mb-3">
+            <h6 class="text-primary">@elem.car.name</h6>
+            <small class="text-body-secondary">@elem.car.shortDesc</small>
+            <span class="text-body-secondary">@elem.car.price.ToString("c") </span>
         </div>
     }
     <hr />

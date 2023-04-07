@@ -12,8 +12,8 @@ using internetShop.Data;
 namespace internetShop.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    [Migration("20230327161455_Initial")]
-    partial class Initial
+    [Migration("20230331202106_Initial2")]
+    partial class Initial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
